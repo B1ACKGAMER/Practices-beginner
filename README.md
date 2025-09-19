@@ -1,2 +1,3 @@
 # Practices-beginner
-This repository is made with the purpose of saving basic HTML practices
+Este es mi repositorio para prácticas.
+Project URL: https://github.com/B1ACKGAMER/Practices-beginner
