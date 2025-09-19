@@ -1,263 +1,200 @@
 <!doctype html>
 <html lang="es">
 <head>
+  <!-- Basic / SEO meta -->
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Hoja de Vida — Tu Nombre</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hoja de Vida — Tu Nombre | Desarrollador Front-End</title>
+  <meta name="description" content="Hoja de vida de Tu Nombre. Desarrollador Front-End / ADSO. Educación, habilidades y trayectoria profesional." />
+  <meta name="keywords" content="Hoja de vida, CV, Desarrollador, Front-End, ADSO, JavaScript, React, MySQL, Git" />
+  <meta name="author" content="Tu Nombre" />
+  <link rel="canonical" href="https://tu-dominio.com/hoja-de-vida" />
+  <meta name="robots" content="index,follow" />
 
-  <!-- Estilos: limpio, responsivo y listo para imprimir -->
+  <!-- Open Graph (social sharing) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Hoja de Vida — Tu Nombre | Desarrollador Front-End" />
+  <meta property="og:description" content="Perfil profesional de Tu Nombre — Recién graduado ADSO con experiencia en proyectos web. Educación, habilidades y trayectoria." />
+  <meta property="og:url" content="https://tu-dominio.com/hoja-de-vida" />
+  <meta property="og:image" content="https://tu-dominio.com/assets/og-image.png" />
+  <meta property="og:locale" content="es_ES" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Hoja de Vida — Tu Nombre" />
+  <meta name="twitter:description" content="Perfil profesional — Recién graduado ADSO. Front-End, React, JavaScript, MySQL." />
+  <meta name="twitter:image" content="https://tu-dominio.com/assets/og-image.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <!-- Optional: add other sizes -->
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <!-- Structured data (JSON-LD) for better SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Tu Nombre",
+    "url": "https://tu-dominio.com/hoja-de-vida",
+    "sameAs": [
+      "https://github.com/tuusuario",
+      "https://linkedin.com/in/tuusuario"
+    ],
+    "jobTitle": "Desarrollador Front-End",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Independiente"
+    }
+  }
+  </script>
+
+  <!-- Minimal reset and layout hints (keep styling light; ready to expand later) -->
   <style>
-    :root{
-      --bg:#f6f7fb;
-      --card:#ffffff;
-      --accent:#0b74de;
-      --muted:#6b7280;
-      --text:#0f1724;
-      --glass: rgba(11,116,222,0.08);
-      --radius:12px;
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      background:linear-gradient(180deg, #eef2ff 0%, var(--bg) 100%);
-      color:var(--text);
-      padding:28px;
-      font-size:16px;
-      line-height:1.45;
-    }
-
-    .container{
-      max-width:1000px;
-      margin:0 auto;
-      display:grid;
-      grid-template-columns: 320px 1fr;
-      gap:20px;
-      align-items:start;
-    }
-
-    /* Tarjeta lateral */
-    .aside{
-      background:var(--card);
-      border-radius:var(--radius);
-      padding:22px;
-      box-shadow:0 6px 18px rgba(15,23,36,0.06);
-      position:sticky;
-      top:28px;
-      height:fit-content;
-    }
-    .photo{
-      width:100%;
-      height:220px;
-      border-radius:10px;
-      background:linear-gradient(135deg,var(--accent),#7dd3fc);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color:white;
-      font-weight:700;
-      font-size:28px;
-      letter-spacing:1px;
-      margin-bottom:14px;
-    }
-    .name{
-      font-size:20px;
-      font-weight:700;
-      margin:0 0 4px 0;
-    }
-    .role{color:var(--muted); margin:0 0 12px 0}
-
-    .contact-list{list-style:none;padding:0;margin:0;font-size:14px}
-    .contact-list li{display:flex;gap:10px;align-items:center;padding:8px 0;color:var(--muted)}
-    .pill{
-      display:inline-block;
-      padding:6px 10px;
-      background:var(--glass);
-      color:var(--accent);
-      border-radius:999px;
-      font-weight:600;
-      font-size:13px;
-    }
-
-    /* Contenido principal */
-    .main{
-      background:var(--card);
-      border-radius:var(--radius);
-      padding:22px;
-      box-shadow:0 6px 18px rgba(15,23,36,0.06);
-    }
-    .section{margin-bottom:18px}
-    .section h2{
-      margin:0 0 10px 0;
-      font-size:16px;
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-    .summary{
-      font-size:15px;
-      color:#111827;
-      margin:0 0 6px 0;
-    }
-
-    .experience-item, .edu-item, .project-item{
-      border-left:3px solid transparent;
-      padding-left:12px;
-      margin-bottom:12px;
-    }
-    .experience-item h3, .edu-item h3, .project-item h3{
-      margin:0;font-size:15px;
-    }
-    .muted{color:var(--muted);font-size:13px;margin-top:4px}
-
-    .skills{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-    }
-    .skill{
-      padding:8px 10px;
-      background:#f3f4f6;
-      border-radius:8px;
-      font-size:13px;
-      color:#111827;
-    }
-
-    /* Layout responsive */
-    @media (max-width:900px){
-      .container{grid-template-columns:1fr; padding-bottom:40px}
-      .aside{position:relative; top:0}
-    }
-
-    /* Impresión */
-    @media print{
-      body{background:white; padding:0}
-      .container{max-width:100%; box-shadow:none}
-      .aside, .main{box-shadow:none; border-radius:0; padding:0}
-    }
+    /* Keep styles minimal so the structure is ready for future styling */
+    :root{color-scheme: light dark}
+    html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;line-height:1.4;color:#111;background:#fff}
+    a{color:inherit}
+    .container{max-width:1100px;margin:28px auto;padding:20px;display:grid;grid-template-columns:320px 1fr;gap:24px}
+    @media (max-width:900px){.container{grid-template-columns:1fr;padding:16px}}
+    /* Visual helpers only; can be removed or replaced later */
+    .card{background:#fff;border-radius:10px;padding:18px;box-shadow:0 6px 18px rgba(0,0,0,0.04)}
+    .muted{color:#6b7280;font-size:0.95rem}
+    nav ul{list-style:none;padding:0;margin:0;display:flex;gap:8px;flex-wrap:wrap}
   </style>
 </head>
 <body>
-
-  <div class="container">
-    <!-- LATERAL -->
-    <aside class="aside" aria-label="Información personal">
-      <div class="photo" aria-hidden="true">TU FOTO</div>
-
-      <h1 class="name">Tu Nombre Completo</h1>
-      <p class="role">Desarrollador Front-End | ADSO</p>
-
-      <div style="display:flex;gap:8px;align-items:center;margin-bottom:12px">
-        <span class="pill">Disponible</span>
-        <span style="color:var(--muted);font-size:13px">Bogotá, Colombia</span>
+  <!-- Page header with semantic nav -->
+  <header style="max-width:1100px;margin:18px auto;padding:0 20px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+      <div>
+        <h1 style="margin:0;font-size:1.25rem">Tu Nombre</h1>
+        <p class="muted" style="margin:4px 0 0">Desarrollador Front-End • ADSO</p>
       </div>
 
-      <ul class="contact-list" aria-label="Contacto">
-        <li><strong>Email:</strong>&nbsp;<span style="color:var(--text)">tu.email@ejemplo.com</span></li>
-        <li><strong>Tel:</strong>&nbsp;<span style="color:var(--text)">+57 300 000 0000</span></li>
-        <li><strong>GitHub:</strong>&nbsp;<a href="https://github.com/tuusuario" target="_blank">github.com/tuusuario</a></li>
-        <li><strong>LinkedIn:</strong>&nbsp;<a href="https://linkedin.com/in/tuusuario" target="_blank">linkedin.com/in/tuusuario</a></li>
-        <li><strong>Portfolio:</strong>&nbsp;<a href="https://tuweb.com" target="_blank">tuweb.com</a></li>
-      </ul>
-    </aside>
+      <nav aria-label="Navegación del CV">
+        <ul>
+          <li><a href="#perfil">Perfil</a></li>
+          <li><a href="#experiencia">Trayectoria</a></li>
+          <li><a href="#educacion">Educación</a></li>
+          <li><a href="#habilidades">Habilidades</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <main class="main" aria-label="Hoja de vida">
-      <!-- Resumen -->
-      <section class="section" id="perfil">
-        <h2>Perfil profesional</h2>
-        <p class="summary">
-          Recién graduado de ADSO con interés en desarrollo Front-End y análisis de sistemas.
-          Capacidad para trabajar en equipo, resolver problemas y aprender tecnologías web modernas.
-          Busco oportunidades para crecer como desarrollador y contribuir en proyectos reales.
-        </p>
-      </section>
-
-      <!-- Experiencia -->
-      <section class="section" id="experiencia" aria-labelledby="experienciatitle">
-        <h2 id="experienciatitle">Experiencia</h2>
-
-        <article class="experience-item">
-          <h3>Prácticas — Empresa Ejemplo</h3>
-          <div class="muted">Jun 2024 — Dic 2024 · Bogotá</div>
-          <p>Soporte en la implementación de funcionalidades en una aplicación web; participación en pruebas y documentación técnica.</p>
-        </article>
-
-        <article class="experience-item">
-          <h3>Proyecto académico — Dog Tour (React)</h3>
-          <div class="muted">Proyecto escolar</div>
-          <p>Desarrollo de la interfaz en React con rutas, formulario de registro e integración básica con backend (servlets/Java o Node.js).</p>
-        </article>
-      </section>
-
-      <!-- Educación -->
-      <section class="section" id="educacion">
-        <h2>Educación</h2>
-        <article class="edu-item">
-          <h3>Técnico ADSO — Nombre de la institución</h3>
-          <div class="muted">2022 — 2025</div>
-          <p>Formación en análisis y desarrollo de sistemas de información, bases de datos y desarrollo web.</p>
-        </article>
-      </section>
-
-      <!-- Habilidades -->
-      <section class="section" id="habilidades">
-        <h2>Habilidades</h2>
-        <div class="skills" role="list">
-          <span class="skill">HTML5</span>
-          <span class="skill">CSS3</span>
-          <span class="skill">JavaScript</span>
-          <span class="skill">React</span>
-          <span class="skill">Java (básico)</span>
-          <span class="skill">MySQL</span>
-          <span class="skill">Git / GitHub</span>
-          <span class="skill">UML & Modelado</span>
-          <span class="skill">Diagramas de flujo</span>
-        </div>
-      </section>
-
-      <!-- Proyectos -->
-      <section class="section" id="proyectos">
-        <h2>Proyectos destacados</h2>
-
-        <article class="project-item">
-          <h3>Dog Tour — Interfaz React</h3>
-          <div class="muted">Repositorio: github.com/tuusuario/dog-tour</div>
-          <p>Interfaz con modo claro/oscuro, formulario de registro y páginas de servicios (Paseo, Veterinario).</p>
-        </article>
-
-        <article class="project-item">
-          <h3>Practices-beginner</h3>
-          <div class="muted">Repositorio: github.com/tuusuario/practices-beginner</div>
-          <p>Conjuntos de ejercicios resueltos en JavaScript y SQL para reforzar lógica y consultas.</p>
-        </article>
-      </section>
-
-      <!-- Cursos / Certificados -->
-      <section class="section" id="cursos">
-        <h2>Cursos y certificaciones</h2>
-        <ul style="margin:0;padding-left:18px;color:var(--muted)">
-          <li>Certificado: Fundamentos de JavaScript — Plataforma X</li>
-          <li>Curso: Introducción a React — Plataforma Y</li>
+  <!-- Main content -->
+  <div class="container" role="main">
+    <!-- SIDEBAR / CONTACT (semantic aside) -->
+    <aside class="card" aria-label="Información de contacto y datos personales">
+      <section aria-labelledby="contacto">
+        <h2 id="contacto" style="font-size:1rem;margin:0 0 8px">Contacto</h2>
+        <p class="muted" style="margin:0 0 12px">Información para que te contacten fácilmente.</p>
+        <ul style="padding-left:16px;margin:0 0 12px">
+          <li><strong>Email:</strong> <a href="mailto:tu.email@ejemplo.com">tu.email@ejemplo.com</a></li>
+          <li><strong>Teléfono:</strong> +57 300 000 0000</li>
+          <li><strong>Ubicación:</strong> Bogotá, Colombia</li>
+          <li><strong>GitHub:</strong> <a href="https://github.com/tuusuario" target="_blank" rel="noopener">github.com/tuusuario</a></li>
+          <li><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/tuusuario" target="_blank" rel="noopener">linkedin.com/in/tuusuario</a></li>
         </ul>
       </section>
 
-      <!-- Idiomas -->
-      <section class="section" id="idiomas">
-        <h2>Idiomas</h2>
-        <p class="muted">Español (Nativo) · Inglés (Intermedio B1)</p>
+      <section aria-labelledby="disponibilidad" style="margin-top:10px">
+        <h3 id="disponibilidad" style="margin:0 0 8px;font-size:0.95rem">Disponibilidad</h3>
+        <p class="muted" style="margin:0">Full-time / Remoto / Presencial — Referencias disponibles bajo petición</p>
+      </section>
+    </aside>
+
+    <!-- PRIMARY CV CONTENT -->
+    <main>
+      <!-- PROFILE -->
+      <section id="perfil" class="card" aria-labelledby="perfil-title" style="margin-bottom:16px">
+        <h2 id="perfil-title" style="margin:0 0 8px">Perfil profesional</h2>
+        <p>
+          Recién graduado de ADSO con interés en desarrollo Front-End. Experiencia en proyectos académicos con React,
+          integración básica con backend (Java/Node.js) y manejo de bases de datos MySQL. Busco oportunidades para crecer
+          profesionalmente y participar en equipos ágiles.
+        </p>
       </section>
 
-      <!-- Footer: disponibilidad / referencias -->
-      <section class="section" id="final">
-        <h2>Disponibilidad</h2>
-        <p class="muted">Disponible para trabajos remotos y presenciales. Referencias disponibles bajo petición.</p>
+      <!-- WORK / CAREER HISTORY -->
+      <section id="experiencia" class="card" aria-labelledby="experiencia-title" style="margin-bottom:16px">
+        <h2 id="experiencia-title" style="margin:0 0 12px">Trayectoria profesional</h2>
+
+        <!-- Each job as article (semantic) -->
+        <article aria-labelledby="job-1" style="margin-bottom:12px">
+          <h3 id="job-1" style="margin:0 0 4px">Prácticas — Empresa Ejemplo</h3>
+          <p class="muted" style="margin:0 0 6px">Jun 2024 — Dic 2024 · Bogotá</p>
+          <p style="margin:0">Soporte y desarrollo de pequeñas funcionalidades en la aplicación web. Colaboración en pruebas y
+            documentación técnica.</p>
+        </article>
+
+        <article aria-labelledby="job-2" style="margin-bottom:12px">
+          <h3 id="job-2" style="margin:0 0 4px">Proyecto académico — Dog Tour (React)</h3>
+          <p class="muted" style="margin:0 0 6px">Proyecto escolar</p>
+          <p style="margin:0">Desarrollo de interfaz en React, rutas con React Router, formulario de registro y secciones de servicios.</p>
+        </article>
+
+        <!-- Add more roles as needed -->
       </section>
+
+      <!-- EDUCATION -->
+      <section id="educacion" class="card" aria-labelledby="educacion-title" style="margin-bottom:16px">
+        <h2 id="educacion-title" style="margin:0 0 12px">Educación</h2>
+
+        <article aria-labelledby="edu-1" style="margin-bottom:10px">
+          <h3 id="edu-1" style="margin:0 0 4px">Técnico ADSO — Nombre de la institución</h3>
+          <p class="muted" style="margin:0 0 6px">2022 — 2025</p>
+          <p style="margin:0">Formación en análisis y desarrollo de sistemas, bases de datos y desarrollo web.</p>
+        </article>
+
+        <!-- Optional: courses -->
+        <div style="margin-top:8px">
+          <strong>Formación complementaria:</strong>
+          <ul style="margin:6px 0 0 18px">
+            <li>Fundamentos de JavaScript — Plataforma X</li>
+            <li>Introducción a React — Plataforma Y</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section id="habilidades" class="card" aria-labelledby="habilidades-title" style="margin-bottom:16px">
+        <h2 id="habilidades-title" style="margin:0 0 12px">Habilidades</h2>
+
+        <ul style="display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:0;list-style:none">
+          <li style="background:#f3f4f6;padding:6px 10px;border-radius:8px">HTML5</li>
+          <li style="background:#f3f4f6;padding:6px 10px;border-radius:8px">CSS3</li>
+          <li style="background:#f3f4f6;padding:6px 10px;border-radius:8px">JavaScript</li>
+          <li style="background:#f3f4f6;padding:6px 10px;border-radius:8px">React</li>
+          <li style="background:#f3f4f6;padding:6px 10px;border-radius:8px">Java (básico)</li>
+          <li style="background:#f3f4f6;padding:6px 10px;border-radius:8px">MySQL</li>
+          <li style="background:#f3f4f6;padding:6px 10px;border-radius:8px">Git / GitHub</li>
+          <li style="background:#f3f4f6;padding:6px 10px;border-radius:8px">UML</li>
+        </ul>
+      </section>
+
+      <!-- Optional: Projects -->
+      <section id="proyectos" class="card" aria-labelledby="proyectos-title" style="margin-bottom:16px">
+        <h2 id="proyectos-title" style="margin:0 0 12px">Proyectos destacados</h2>
+
+        <article aria-labelledby="proj-1" style="margin-bottom:10px">
+          <h3 id="proj-1" style="margin:0 0 4px">Dog Tour — Interfaz React</h3>
+          <p class="muted" style="margin:0 0 6px">Repositorio: <a href="https://github.com/tuusuario/dog-tour" target="_blank" rel="noopener">github.com/tuusuario/dog-tour</a></p>
+          <p style="margin:0">Interfaz con modo claro/oscuro, formulario de registro y páginas de servicios.</p>
+        </article>
+      </section>
+
+      <!-- Footer of main content -->
+      <footer style="margin-top:6px;font-size:0.95rem;color:#6b7280">
+        <p style="margin:0">Referencias disponibles bajo petición • Última actualización: 2025</p>
+      </footer>
     </main>
   </div>
 
+  <!-- Minimal accessibility helper: skip link (hidden visually but useful) -->
+  <a href="#perfil" style="position:fixed;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">Skip to content</a>
 </body>
 </html>
+
